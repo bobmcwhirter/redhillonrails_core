@@ -14,7 +14,7 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
       execute "ALTER TABLE #{table_name} COMMENT=''"
     end
 
-    def remove_foreign_key(table_name, foreign_key_name)
+    def remove_foreign_key(table_name, foreign_key_name, options = {})
       execute "ALTER TABLE #{table_name} DROP FOREIGN KEY #{foreign_key_name}"
     end
 

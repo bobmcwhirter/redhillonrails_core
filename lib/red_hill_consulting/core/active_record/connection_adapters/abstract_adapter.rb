@@ -34,12 +34,12 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
       execute "ALTER TABLE #{table_name} ADD #{foreign_key}"
     end
 
-    def remove_foreign_key(table_name, foreign_key_name)
+    def remove_foreign_key(table_name, foreign_key_name, options = {})
       execute "ALTER TABLE #{table_name} DROP CONSTRAINT #{foreign_key_name}"
     end
 
     def drop_table_with_redhillonrails_core(name, options = {})
-      reverse_foreign_keys(name).each { |foreign_key| remove_foreign_key(foreign_key.table_name, foreign_key.name) }
+      reverse_foreign_keys(name).each { |foreign_key| remove_foreign_key(foreign_key.table_name, foreign_key.name, options) }
       drop_table_without_redhillonrails_core(name, options)
     end
   end
